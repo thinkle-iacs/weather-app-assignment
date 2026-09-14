@@ -1,6 +1,4 @@
 <!doctype html>
-<!-- AI-generated code starts here -->
-<!-- Teacher prompt: Provide an unstyled ZIP-code form and raw forecast JSON, leaving design to students. -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,19 +9,33 @@
   </head>
   <body>
     <main>
-      <h1>Weather App Starter</h1>
-      <p>Load a forecast, inspect the JSON, and decide what to build with it.</p>
-      <form id="location-form" novalidate>
+      <h1>My Weather App</h1>
+      <div>
         <label for="zip-code">U.S. ZIP code</label>
-        <input id="zip-code" name="zip-code" type="text" inputmode="numeric"
-          autocomplete="postal-code" pattern="[0-9]{5}" maxlength="5"
-          value="01879" required />
-        <button type="submit">Get forecast data</button>
-      </form>
+        <input
+          id="zip-code"
+          name="zip-code"
+          type="text"
+          inputmode="numeric"
+          autocomplete="postal-code"
+          pattern="[0-9]{5}"
+          maxlength="5"
+          value="01879"
+          required
+        />
+        <button id="get-zip-button">Get place</button>
+      </div>
+      <div>
+        <!-- Start these disabled -->
+        <!-- They'll activate once we have a place... -->
+        <button id="get-forecast-button" disabled>Get forecast</button>
+        <button id="get-hourly-button" disabled>Get Hourly Forecast</button>
+      </div>
+
       <p id="status" aria-live="polite"></p>
-      <section id="weather" hidden>
+      <section id="weather">
         <h2>Raw forecast data</h2>
-        <pre id="raw-data"></pre>
+        <pre id="raw-data">Data will appear here...</pre>
       </section>
     </main>
     <footer>
@@ -31,4 +43,3 @@
     </footer>
   </body>
 </html>
-<!-- AI-generated code ends here -->
