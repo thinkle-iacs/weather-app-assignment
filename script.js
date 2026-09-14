@@ -73,7 +73,11 @@ async function getForecast(forecastUrl) {
 function renderForecast({ location, point, weatherData }) {
   const periods = weatherData.properties.periods.slice(0, 6);
   placeNameElement.textContent = `${location.city}, ${location.state}`;
-  updatedTimeElement.textContent = `Updated ${formatDate(weatherData.properties.updated)}`;
+  // AI-generated code starts here
+  // Teacher prompt: Fix the invalid time value that prevents forecasts from displaying.
+  const updated = formatDate(weatherData.properties.updateTime);
+  updatedTimeElement.textContent = updated ? `Updated ${updated}` : "Update time unavailable";
+  // AI-generated code ends here
   forecastListElement.replaceChildren(...periods.map(createForecastCard));
 
   // Useful starting points for experiments with hourly forecasts or grids.
@@ -120,6 +124,12 @@ function showError(message) {
   statusElement.textContent = message;
 }
 
+// AI-generated code starts here
+// Teacher prompt: Fix the invalid time value that prevents forecasts from displaying.
 function formatDate(isoDate) {
-  return new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(new Date(isoDate));
+  if (typeof isoDate !== "string" || !isoDate.trim()) return "";
+  const date = new Date(isoDate);
+  if (Number.isNaN(date.getTime())) return "";
+  return new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(date);
 }
+// AI-generated code ends here
