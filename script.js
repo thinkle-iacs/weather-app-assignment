@@ -77,7 +77,8 @@ forecastButton.addEventListener(
       let summary = '';
       // For the first 5 weather periods...
       for (let p of data.properties.periods.slice(0, 5)) {
-        // Add to summary: name/shortForecast
+        console.log('period: ', p);
+        // Add to summary: name/shortForecast        
         summary += `<br>${p.name}: ${p.shortForecast}\n`;
       }
       weatherSummaryElement.innerHTML = summary;
@@ -101,7 +102,9 @@ hourlyButton.addEventListener(
       // For the first 5 weather periods...
       for (let p of periods.slice(0, 8)) {
         // build a little summary string (\n creates a new line...)        
-        summary += `<br>${new Date(p.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', seconds: false })} - ${p.temperature}°${p.temperatureUnit}, ${p.shortForecast}`
+        console.log('period: ', p);
+        let timeString = new Date(p.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', seconds: false });
+        summary += `<br>${timeString} - ${p.shortForecast}`
       }
       weatherSummaryElement.innerHTML = summary;
     } catch (error) {
