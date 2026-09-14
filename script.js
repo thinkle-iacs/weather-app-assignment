@@ -3,9 +3,7 @@ const form = document.querySelector("#location-form");
 const zipInput = document.querySelector("#zip-code");
 const statusElement = document.querySelector("#status");
 const weatherSection = document.querySelector("#weather");
-const placeNameElement = document.querySelector("#place-name");
-const updatedTimeElement = document.querySelector("#updated-time");
-const forecastListElement = document.querySelector("#forecast-list");
+const rawDataElement = document.querySelector("#raw-data");
 
 form.addEventListener("submit", handleSubmit);
 
@@ -28,7 +26,7 @@ async function handleSubmit(event) {
     const point = await getForecastUrls(location.latitude, location.longitude);
     // Request 3: follow the daily forecast URL returned by NWS.
     const weatherData = await getForecast(point.forecastUrl);
-    renderForecast({ location, point, weatherData });
+    renderForecast({ weatherData });
   } catch (error) {
     console.error(error);
     showError(error.message || "The forecast could not be loaded. Please try again.");
@@ -70,66 +68,22 @@ async function getForecast(forecastUrl) {
   return response.json();
 }
 
-function renderForecast({ location, point, weatherData }) {
-  const periods = weatherData.properties.periods.slice(0, 6);
-  placeNameElement.textContent = `${location.city}, ${location.state}`;
-  // AI-generated code starts here
-  // Teacher prompt: Fix the invalid time value that prevents forecasts from displaying.
-  const updated = formatDate(weatherData.properties.updateTime);
-  updatedTimeElement.textContent = updated ? `Updated ${updated}` : "Update time unavailable";
-  // AI-generated code ends here
-  forecastListElement.replaceChildren(...periods.map(createForecastCard));
-
-  // Useful starting points for experiments with hourly forecasts or grids.
-  console.log("Resolved NWS point:", point);
-  console.log("Full forecast response:", weatherData);
-  statusElement.replaceChildren();
+// AI-generated code starts here
+// Teacher prompt: Remove the finished forecast design and display raw JSON for students to use.
+function renderForecast({ weatherData }) {
+  // Replace this raw output with your own selection and presentation of the data.
+  rawDataElement.textContent = JSON.stringify(weatherData, null, 2);
+  statusElement.textContent = "Forecast data loaded.";
   weatherSection.hidden = false;
-}
-
-function createForecastCard(period) {
-  const article = document.createElement("article");
-  article.className = "forecast-card";
-  const heading = document.createElement("h3");
-  heading.textContent = period.name;
-  const icon = document.createElement("img");
-  icon.src = period.icon;
-  icon.alt = "";
-  icon.width = 86;
-  icon.height = 86;
-  const temperature = document.createElement("p");
-  temperature.className = "temperature";
-  temperature.textContent = `${period.temperature}°${period.temperatureUnit}`;
-  const summary = document.createElement("p");
-  summary.textContent = period.shortForecast;
-  article.append(heading, icon, temperature, summary);
-  return article;
 }
 
 function showLoading(message) {
   weatherSection.hidden = true;
-  statusElement.className = "status loading";
-  statusElement.replaceChildren();
-  const spinner = document.createElement("span");
-  spinner.className = "spinner";
-  spinner.setAttribute("aria-hidden", "true");
-  const text = document.createElement("p");
-  text.textContent = message;
-  statusElement.append(spinner, text);
+  statusElement.textContent = message;
 }
 
 function showError(message) {
   weatherSection.hidden = true;
-  statusElement.className = "status error";
   statusElement.textContent = message;
-}
-
-// AI-generated code starts here
-// Teacher prompt: Fix the invalid time value that prevents forecasts from displaying.
-function formatDate(isoDate) {
-  if (typeof isoDate !== "string" || !isoDate.trim()) return "";
-  const date = new Date(isoDate);
-  if (Number.isNaN(date.getTime())) return "";
-  return new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(date);
 }
 // AI-generated code ends here

@@ -29,7 +29,7 @@ The browser makes three requests:
 2. `getForecastUrls()` asks `api.weather.gov/points/{latitude},{longitude}` which NWS office/grid serves that point and gets forecast URLs.
 3. `getForecast()` follows the returned daily forecast URL.
 
-Open `script.js` and follow those functions from `handleSubmit()` downward. The full response contains much more than the starter displays. Read the [NWS API documentation](https://www.weather.gov/documentation/services-web-api) to decide what your app needs.
+Open `script.js` and follow those functions from `handleSubmit()` downward. The starter displays the complete forecast response as indented JSON in a `<pre>` element. It does not select forecast periods or build a finished interface. Choose which data matters for your idea and replace the raw output in `renderForecast()` with your own presentation. `styles.css` is linked but contains no style rules; the page intentionally uses browser defaults. Read the [NWS API documentation](https://www.weather.gov/documentation/services-web-api) to decide what your app needs.
 
 > The National Weather Service covers the United States and its territories. The ZIP-code helper is only a convenient starting input; you may switch to coordinates, browser geolocation, a map, city buttons, a route, or another sensible input.
 
@@ -46,6 +46,18 @@ Your finished app must:
 - credit code, content, images, and AI assistance both in code comments and in the finished site;
 - be published and submitted as both a working site link and a source-code link.
 
+## Assessment: Digital Creation
+
+Your whole site is assessed on the **Digital Creation** standard. The three rows below describe the evidence in this project; they are aspects of that overall assessment, not separate point totals.
+
+| Aspect | Meeting the Standard (3) | Mastery (4) |
+| --- | --- | --- |
+| **Appearance** | Your site has an intentional, consistent visual design. You apply contrast, repetition, alignment, and grouping (CRAG). You choose typography and colors, maintain readable contrast, and design for narrow screens rather than leaving browser defaults. | Your visual choices work together to communicate the app's purpose and personality. Careful typography, spacing, color, and hierarchy guide attention; layouts show attention to detail across screen sizes and interface states. |
+| **Function** | Your app serves a clear purpose. Controls have clear labels and affordances, work with a keyboard, and produce the expected result. Loading, empty, and error states help the user understand what is happening. | The app achieves its purpose with a thoughtful, efficient interaction flow. It handles unusual inputs and recovery gracefully, and its interactions show care for the user's experience. |
+| **Working use of the API** | Your app successfully requests live weather data with asynchronous JavaScript and selects, transforms, and presents relevant values for your concept. The result goes beyond the starter's JSON dump. You can explain the request → response → output flow and acknowledge data sources and AI assistance on the site and in code. | You use API data thoughtfully to answer your chosen question through meaningful comparison, filtering, calculation, or another purposeful transformation. Your code is clear and well commented; it handles missing data and failed requests, and you can explain and verify how the output follows from the data. |
+
+A working copy of the starter is a starting point, not a finished Digital Creation submission. Mastery comes from the quality and purpose of your decisions, not simply adding more features.
+
 ## Suggested milestones
 
 1. **Trace the starter.** Label the input, request, response, transformation, and output in your own words.
@@ -61,7 +73,7 @@ Your finished app must:
 ```text
 .
 ├── index.html          # page structure and accessible labels
-├── styles.css          # starter design; make it yours
+├── styles.css          # empty stylesheet; design it yourself
 ├── script.js           # API requests, data logic, and rendering
 ├── citations.html      # visible source and AI acknowledgments
 ├── AGENTS.md           # guardrails for coding agents

@@ -1,49 +1,34 @@
 <!doctype html>
+<!-- AI-generated code starts here -->
+<!-- Teacher prompt: Provide an unstyled ZIP-code form and raw forecast JSON, leaving design to students. -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="A starter weather app powered by National Weather Service data." />
-    <title>Weather, Somewhere</title>
+    <title>Weather App Starter</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
     <main>
-      <header class="hero">
-        <p class="eyebrow">A very remixable forecast</p>
-        <h1>Weather, somewhere.</h1>
-        <p class="intro">Enter a U.S. ZIP code to see the National Weather Service forecast.</p>
-      </header>
-
-      <form id="location-form" class="search" novalidate>
-        <label for="zip-code">ZIP code</label>
-        <div class="search-row">
-          <input id="zip-code" name="zip-code" type="text" inputmode="numeric" autocomplete="postal-code"
-            pattern="[0-9]{5}" maxlength="5" value="01879" aria-describedby="zip-hint" required />
-          <button type="submit">Get forecast</button>
-        </div>
-        <p id="zip-hint" class="hint">Try Tyngsborough: 01879</p>
+      <h1>Weather App Starter</h1>
+      <p>Load a forecast, inspect the JSON, and decide what to build with it.</p>
+      <form id="location-form" novalidate>
+        <label for="zip-code">U.S. ZIP code</label>
+        <input id="zip-code" name="zip-code" type="text" inputmode="numeric"
+          autocomplete="postal-code" pattern="[0-9]{5}" maxlength="5"
+          value="01879" required />
+        <button type="submit">Get forecast data</button>
       </form>
-
-      <section id="status" class="status" aria-live="polite"></section>
-
-      <section id="weather" class="weather" hidden>
-        <div class="weather-heading">
-          <div>
-            <p class="eyebrow">National Weather Service forecast</p>
-            <h2 id="place-name"></h2>
-          </div>
-          <p id="updated-time" class="updated"></p>
-        </div>
-        <div id="forecast-list" class="forecast-list"></div>
+      <p id="status" aria-live="polite"></p>
+      <section id="weather" hidden>
+        <h2>Raw forecast data</h2>
+        <pre id="raw-data"></pre>
       </section>
     </main>
-
     <footer>
-      <p>Data from the <a href="https://www.weather.gov/documentation/services-web-api">National Weather Service</a>.
-        Location lookup from <a href="https://www.zippopotam.us/">Zippopotam.us</a>.</p>
-      <p class="student-note"><a href="citations.html">Sources &amp; acknowledgments</a> — update this page as you work.</p>
+      <p><a href="citations.html">Sources &amp; acknowledgments</a></p>
     </footer>
   </body>
 </html>
+<!-- AI-generated code ends here -->
