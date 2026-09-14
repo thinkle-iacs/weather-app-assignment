@@ -24,6 +24,17 @@ zipButton.addEventListener(
     // Get the zip code from the zip input
     const zipCode = zipInput.value.trim();
 
+    // AI-generated code starts here
+    // Teacher prompt: Fix stale locations and status messages while keeping the simple button handlers.
+    thePlace = undefined;
+    forecastUrl = undefined;
+    hourlyForecastUrl = undefined;
+    forecastButton.disabled = true;
+    hourlyButton.disabled = true;
+    weatherSummaryElement.textContent = "";
+    rawDataElement.textContent = "";
+    // AI-generated code ends here
+
     // Make the statusElement show we are working...
     statusElement.textContent = `Finding the forecast for ${zipCode}…`;
 
@@ -48,6 +59,10 @@ zipButton.addEventListener(
       console.log('Got response from weather.gov: ', data);
       forecastUrl = data.properties.forecast;
       hourlyForecastUrl = data.properties.forecastHourly;
+      // AI-generated code starts here
+    // Teacher prompt: Fix stale locations and status messages while keeping the simple button handlers.
+    statusElement.textContent = "Place found. Choose a forecast button.";
+    // AI-generated code ends here
     } catch (error) {
       console.error('Error fetching weather.gov', error);
       statusElement.textContent = `Error getting weather data: ${error}`
@@ -82,9 +97,16 @@ forecastButton.addEventListener(
         summary += `<br>${p.name}: ${p.shortForecast}\n`;
       }
       weatherSummaryElement.innerHTML = summary;
+      // AI-generated code starts here
+    // Teacher prompt: Fix stale locations and status messages while keeping the simple button handlers.
+    statusElement.textContent = "Forecast loaded.";
+    // AI-generated code ends here
     } catch (error) {
       console.error('Error fetching daily forecast: ', error)
-      statusElement.textContent = `Error fetching hourly forecast: ${error}`
+      // AI-generated code starts here
+      // Teacher prompt: Correct the daily forecast error label.
+      statusElement.textContent = `Error fetching daily forecast: ${error}`
+      // AI-generated code ends here
 
     }
   }
@@ -107,6 +129,10 @@ hourlyButton.addEventListener(
         summary += `<br>${timeString} - ${p.shortForecast}`
       }
       weatherSummaryElement.innerHTML = summary;
+      // AI-generated code starts here
+    // Teacher prompt: Fix stale locations and status messages while keeping the simple button handlers.
+    statusElement.textContent = "Forecast loaded.";
+    // AI-generated code ends here
     } catch (error) {
       console.error('Error fetching hourly forecast: ', error)
       statusElement.textContent = `Error fetching hourly forecast: ${error}`

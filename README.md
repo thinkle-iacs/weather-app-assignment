@@ -23,13 +23,13 @@ The page reloads automatically when you save. Stop the server with `Control+C`.
 
 ## How the starter works
 
-The browser makes three requests:
+Open `script.js` and follow the three `addEventListener()` button handlers:
 
-1. `getCoordinatesForZip()` asks Zippopotam.us for the ZIP code's latitude and longitude.
-2. `getForecastUrls()` asks `api.weather.gov/points/{latitude},{longitude}` which NWS office/grid serves that point and gets forecast URLs.
-3. `getForecast()` follows the returned daily forecast URL.
+1. **Get place** reads the ZIP code, asks Zippopotam.us for its latitude and longitude, then asks `api.weather.gov/points/{latitude},{longitude}` for the daily and hourly forecast URLs. The forecast buttons become available when those URLs are found.
+2. **Get forecast** fetches the daily forecast URL. It displays the complete response as indented JSON and builds a small summary from the first five forecast periods.
+3. **Get Hourly Forecast** fetches the hourly forecast URL. It displays the complete response as indented JSON and summarizes the first eight hours with their times.
 
-Open `script.js` and follow those functions from `handleSubmit()` downward. The starter displays the complete forecast response as indented JSON in a `<pre>` element. It does not select forecast periods or build a finished interface. Choose which data matters for your idea and replace the raw output in `renderForecast()` with your own presentation. `styles.css` is linked but contains no style rules; the page intentionally uses browser defaults. Read the [NWS API documentation](https://www.weather.gov/documentation/services-web-api) to decide what your app needs.
+Getting a place and then one forecast makes three requests in total. The summary loops show a small example of selecting data and putting it on the page. Choose which data matters for your idea and change the summaries to build your own presentation. `styles.css` is linked but contains no style rules; the starter uses browser defaults and a simple side-by-side table. Read the [NWS API documentation](https://www.weather.gov/documentation/services-web-api) to decide what your app needs.
 
 > The National Weather Service covers the United States and its territories. The ZIP-code helper is only a convenient starting input; you may switch to coordinates, browser geolocation, a map, city buttons, a route, or another sensible input.
 
