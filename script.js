@@ -3,6 +3,7 @@ const zipInput = document.querySelector("#zip-code");
 const statusElement = document.querySelector("#status");
 const weatherSection = document.querySelector("#weather");
 const rawDataElement = document.querySelector("#raw-data");
+const weatherSummaryElement = document.querySelector('#weather-summary');
 
 // Get our buttons that trigger stuff...
 const zipButton = document.querySelector("#get-zip-button");
@@ -14,7 +15,6 @@ let thePlace; // where the forecast is for
 let weatherData; // weather data
 let forecastUrl; // where to get the forecast
 let hourlyForecastUrl; // where to get the hourly forecast
-
 
 zipButton.addEventListener(
   // When the user clicks the zip button
@@ -70,28 +70,46 @@ zipButton.addEventListener(
 forecastButton.addEventListener(
   // When the forecast button is clicked...
   "click", async function () {
-    const response = await fetch(forecastUrl);
-    const data = await response.json();
-    rawDataElement.textContent = JSON.stringify(data, null, 2);
+    try {
+      const response = await fetch(forecastUrl);
+      const data = await response.json();
+      rawDataElement.textContent = JSON.stringify(data, null, 2);
+      let summary = '';
+      // For the first 5 weather periods...
+      for (let p of data.properties.periods.slice(0, 5)) {
+        // Add to summary: name/shortForecast
+        summary += `<br>${p.name}: ${p.shortForecast}\n`;
+      }
+      weatherSummaryElement.innerHTML = summary;
+    } catch (error) {
+      console.error('Error fetching hourly forecast: ', error)
+      statusElement.textContent = `Error fetching hourly forecast: ${error}`
+
+    }
   }
 );
 
 hourlyButton.addEventListener(
   // When the hourly button is clicked
   "click", async function () {
-    const response = await fetch(hourlyForecastUrl);
-    const data = await response.json();
-    rawDataElement.textContent = JSON.stringify(data, null, 2);
+    try {
+      const response = await fetch(hourlyForecastUrl);
+      const data = await response.json();
+      rawDataElement.textContent = JSON.stringify(data, null, 2);
+      let periods = data.properties.periods;
+      let summary = '';
+      // For the first 5 weather periods...
+      for (let p of periods.slice(0, 8)) {
+        // build a little summary string (\n creates a new line...)        
+        summary += `<br>${new Date(p.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', seconds: false })} - ${p.temperature}°${p.temperatureUnit}, ${p.shortForecast}`
+      }
+      weatherSummaryElement.innerHTML = summary;
+    } catch (error) {
+      console.error('Error fetching hourly forecast: ', error)
+      statusElement.textContent = `Error fetching hourly forecast: ${error}`
+    }
   }
 )
 
-// AI-generated code starts here
-// Teacher prompt: Remove the finished forecast design and display raw JSON for students to use.
-function renderForecast({ weatherData }) {
-  // Replace this raw output with your own selection and presentation of the data.
-  rawDataElement.textContent = JSON.stringify(weatherData, null, 2);
-  statusElement.textContent = "Forecast data loaded.";
-  weatherSection.hidden = false;
-}
 
-// AI-generated code ends here
+

@@ -32,10 +32,22 @@
         <button id="get-hourly-button" disabled>Get Hourly Forecast</button>
       </div>
 
-      <p id="status" aria-live="polite"></p>
+      <p id="status"></p>
       <section id="weather">
-        <h2>Raw forecast data</h2>
-        <pre id="raw-data">Data will appear here...</pre>
+        <table>
+          <tr>
+            <th>The Weather</th>
+            <th>Raw Forecast</th>
+          </tr>
+          <tr>
+            <td valign="top">
+              <div style="width: 21em" id="weather-summary"></div>
+            </td>
+            <td valign="top">
+              <pre id="raw-data">Data will appear here...</pre>
+            </td>
+          </tr>
+        </table>
       </section>
     </main>
     <footer>
