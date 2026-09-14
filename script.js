@@ -24,8 +24,7 @@ zipButton.addEventListener(
     // Get the zip code from the zip input
     const zipCode = zipInput.value.trim();
 
-    // AI-generated code starts here
-    // Teacher prompt: Fix stale locations and status messages while keeping the simple button handlers.
+    // Reset the variables and disable the buttons until we know we have a forecast
     thePlace = undefined;
     forecastUrl = undefined;
     hourlyForecastUrl = undefined;
@@ -33,12 +32,6 @@ zipButton.addEventListener(
     hourlyButton.disabled = true;
     weatherSummaryElement.textContent = "";
     rawDataElement.textContent = "";
-    // AI-generated code ends here
-
-    // Make the statusElement show we are working...
-    statusElement.textContent = `Finding the forecast for ${zipCode}…`;
-
-
 
     // Attempt to load location data from zip code
     try {
@@ -58,11 +51,7 @@ zipButton.addEventListener(
       const data = await response.json();
       console.log('Got response from weather.gov: ', data);
       forecastUrl = data.properties.forecast;
-      hourlyForecastUrl = data.properties.forecastHourly;
-      // AI-generated code starts here
-    // Teacher prompt: Fix stale locations and status messages while keeping the simple button handlers.
-    statusElement.textContent = "Place found. Choose a forecast button.";
-    // AI-generated code ends here
+      hourlyForecastUrl = data.properties.forecastHourly;     
     } catch (error) {
       console.error('Error fetching weather.gov', error);
       statusElement.textContent = `Error getting weather data: ${error}`
@@ -97,17 +86,10 @@ forecastButton.addEventListener(
         summary += `<br>${p.name}: ${p.shortForecast}\n`;
       }
       weatherSummaryElement.innerHTML = summary;
-      // AI-generated code starts here
-    // Teacher prompt: Fix stale locations and status messages while keeping the simple button handlers.
-    statusElement.textContent = "Forecast loaded.";
-    // AI-generated code ends here
+      
     } catch (error) {
-      console.error('Error fetching daily forecast: ', error)
-      // AI-generated code starts here
-      // Teacher prompt: Correct the daily forecast error label.
-      statusElement.textContent = `Error fetching daily forecast: ${error}`
-      // AI-generated code ends here
-
+      console.error('Error fetching daily forecast: ', error)      
+      statusElement.textContent = `Error fetching daily forecast: ${error}`      
     }
   }
 );
@@ -128,11 +110,7 @@ hourlyButton.addEventListener(
         let timeString = new Date(p.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
         summary += `<br>${timeString} - ${p.shortForecast}`
       }
-      weatherSummaryElement.innerHTML = summary;
-      // AI-generated code starts here
-    // Teacher prompt: Fix stale locations and status messages while keeping the simple button handlers.
-    statusElement.textContent = "Forecast loaded.";
-    // AI-generated code ends here
+      weatherSummaryElement.innerHTML = summary;      
     } catch (error) {
       console.error('Error fetching hourly forecast: ', error)
       statusElement.textContent = `Error fetching hourly forecast: ${error}`
