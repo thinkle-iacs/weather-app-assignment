@@ -83,7 +83,7 @@ forecastButton.addEventListener(
       }
       weatherSummaryElement.innerHTML = summary;
     } catch (error) {
-      console.error('Error fetching hourly forecast: ', error)
+      console.error('Error fetching daily forecast: ', error)
       statusElement.textContent = `Error fetching hourly forecast: ${error}`
 
     }
@@ -99,11 +99,11 @@ hourlyButton.addEventListener(
       rawDataElement.textContent = JSON.stringify(data, null, 2);
       let periods = data.properties.periods;
       let summary = '';
-      // For the first 5 weather periods...
+      // For the first 8 weather periods...
       for (let p of periods.slice(0, 8)) {
         // build a little summary string (\n creates a new line...)        
         console.log('period: ', p);
-        let timeString = new Date(p.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', seconds: false });
+        let timeString = new Date(p.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
         summary += `<br>${timeString} - ${p.shortForecast}`
       }
       weatherSummaryElement.innerHTML = summary;

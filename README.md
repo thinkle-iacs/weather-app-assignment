@@ -40,11 +40,15 @@ Your finished app must:
 - use live weather data to serve a clear purpose or concept;
 - transform the API data rather than merely printing raw JSON;
 - use asynchronous JavaScript (`fetch`, `async`, and `await`);
-- include useful loading, empty, and error states;
-- work well with a keyboard and at narrow mobile widths;
 - have a coherent visual system: intentional typography, color, spacing, and hierarchy;
 - credit code, content, images, and AI assistance both in code comments and in the finished site;
 - be published and submitted as both a working site link and a source-code link.
+
+An excellent app will:
+
+- have a unique and highly polished visual identity
+- demonstrate thoughtful interaction design, including graceful handling of unusual inputs and recovery from errors
+- have clean, responsive design, working well on mobile and desktop, and across multiple screen sizes
 
 ## Assessment: Digital Creation
 
@@ -62,7 +66,7 @@ A working copy of the starter is a starting point, not a finished Digital Creati
 
 1. **Trace the starter.** Read the starter code. Use the shape of the code to make one small "hello world" change, such as adding the temperature to the current summary output.
 2. **Choose a user and question.** What will be your approach to a weather app? Choose a focus and a user, and write a one-sentence question that your app will answer. What will make your app unique? Your app could be as simple as answering the question "When should I walk my dog?" or "What's the
-   weather like for my family?" for tracking a family spread across multiple ZIP codes. You might also choose a more unusual question, such as "Where is the next sunny day?" or "When will it ideal weather to fly a kite?"
+   weather like for my family?" for tracking a family spread across multiple ZIP codes. You might also choose a more unusual question, such as "Where is the next sunny day?" or "When will it be ideal weather to fly a kite?"
 3. **Sketch before styling.** Make a rough mobile layout and identify the most important information.
 4. **Build the data logic.** Filter, compare, calculate, or combine forecast periods to answer your question. You might have to fetch more than
    one forecast URL, or you might combine data from multiple periods depending on what your app does. You can use AI to help you build data logic, but you should have at least one clear set of data fetching logic that you can walk through and explain in your own words.
@@ -104,5 +108,3 @@ Every push to `main` runs the included GitHub Pages action. In **Settings → Pa
 - [Zippopotam.us ZIP code API](https://www.zippopotam.us/)
 
 Starter revised for IACS Web Design 2, 2026–2027.
-
-Teachers preparing to launch this repository should search for `FIXME` or open [FIXME.md](FIXME.md).
